@@ -29,12 +29,11 @@ export default function Home() {
         <Row>
         
           <Col span={24} style={{ textAlign: 'center'}} >
-            <h1 style={{ fontSize:"50px"}}>Tante App</h1>
-            <h3 style={{ fontSize:"25px"}}>Your one-stop solution for property management.</h3>
-            <p style={{ fontSize:"20px"}}><i>Manage your properties with ease</i></p>
+            <h1 style={{ fontSize:"50px"}}>Zayra Cakes</h1>
+            <p style={{ fontSize:"20px"}}>Order your favorite cakes online and get them delivered to your doorstep.</p>
           </Col>
         </Row>
-        <Row justify="center" align="middle">
+        {/* <Row justify="center" align="middle">
           <Col span={24} style={{ textAlign: 'center' }}>
               <Button 
                 color="green" 
@@ -46,7 +45,7 @@ export default function Home() {
                 Give it a Try
               </Button>
           </Col>
-        </Row>
+        </Row> */}
 
       </Flex>);
 }
