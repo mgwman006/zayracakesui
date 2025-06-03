@@ -1,10 +1,9 @@
 import path from "path";
 import Home from "./components/Home";
 import LogIn from "./components/LogIn";
-import RegisterLandLord from "./components/RegisterLandLord";
-import { Component } from "react";
-import LandLordPage from "./components/LandLordPage";
-import { getTenants } from "./services/userServices";
+import AddProduct from "./components/AddProduct";
+import Admin from "./components/Admin";
+import CustomerProductList from "./components/CustomerProductList";
 
 const routes = [
   {
@@ -16,12 +15,16 @@ const routes = [
     Component: LogIn,
   },
   {
-    path: "registerlandlord",
-    Component: RegisterLandLord
+    path: "productlist",
+    Component: CustomerProductList
   },
   {
-    path: "landlord/:landlordId",
-    Component: LandLordPage
+    path:"addproduct",
+    Component: AddProduct
+  },
+  {
+    path: "admin",
+    Component: Admin
   }
 ];
 

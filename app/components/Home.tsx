@@ -33,19 +33,19 @@ export default function Home() {
             <p style={{ fontSize:"20px"}}>Order your favorite cakes online and get them delivered to your doorstep.</p>
           </Col>
         </Row>
-        {/* <Row justify="center" align="middle">
+        <Row justify="center" align="middle">
           <Col span={24} style={{ textAlign: 'center' }}>
               <Button 
                 color="green" 
                 size="large" 
-                href="/login" 
+                href="/productlist" 
                 variant="solid" 
                 style={{ width: '200px', height: '50px', fontSize: '20px' }}
               >
                 Give it a Try
               </Button>
           </Col>
-        </Row> */}
+        </Row>
 
       </Flex>);
 }
