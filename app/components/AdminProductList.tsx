@@ -3,7 +3,6 @@ import { deleteProduct, getProducts, updateProductMetaData } from "../services/p
 import {Image, Button, Card, Col, DatePicker, Drawer, Flex, Form, Input, List, message, Popconfirm, PopconfirmProps, Row, Select, Space } from "antd";
 import { SettingOutlined, EditOutlined, EllipsisOutlined, DeleteColumnOutlined, DeleteOutlined } from "@ant-design/icons";
 import Meta from "antd/es/card/Meta";
-import { data } from "react-router";
 
 export default function AdminProductList()
 {

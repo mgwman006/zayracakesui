@@ -3,14 +3,14 @@ import { SettingOutlined, EditOutlined, EllipsisOutlined, ShopOutlined, CarTwoTo
 import Meta from "antd/es/card/Meta";
 import { use, useEffect, useState } from "react";
 import { getProducts } from "../services/productService";
-import { red } from "@mui/material/colors";
+import { useCart } from "../contexts/CartContext";
 
-const { Title, Paragraph } = Typography;
-const { useBreakpoint } = Grid;
 
 export default function CustomerProductList() {
 
+
     const [products, setProducts] = useState<Product[]>([]);
+    const {cartCount, updateCart} = useCart(); // Initialize with the number of items in cart from local storage
 
     useEffect(() => {
         // Fetch products or any initial data here if needed
@@ -32,10 +32,12 @@ export default function CustomerProductList() {
         fetchProducts();
     }, []);
 
-    const screens = useBreakpoint();
 
   // Decide title size based on screen
-  const titleLevel = screens.xs ? 5 : screens.sm ? 4 : 3;
+
+    const addProductToCart = (item: Product) => {
+             updateCart(item); // Update the cart context
+    }
 
   return (
 
@@ -80,10 +82,10 @@ export default function CustomerProductList() {
             actions={[
 
            
-            <Button color="green" icon={<ShoppingCartOutlined />}  variant="outlined" size="large" >
+            <Button type="primary" onClick={() => addProductToCart(item)} color="green" icon={<ShoppingCartOutlined />}  variant="outlined" size="large" >
                 Add to Cart
             </Button>,
-             <Button color="blue" icon={<ShopOutlined />}  variant="outlined" size="large" >
+             <Button color="blue" onClick={() => addProductToCart(item)} variant="outlined" size="large" >
                 Buy Now
             </Button>,
             ]}
@@ -108,3 +110,4 @@ export default function CustomerProductList() {
     
   );
 }
+

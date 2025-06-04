@@ -15,3 +15,19 @@ export const removeFromLocalStorage = (key:string) => {
     if (typeof window !== 'undefined') 
         localStorage.removeItem(key);
 };
+
+export const getCartDataFromLocalStorage = (): Product[] => {
+    let data: string | null = null;
+    if (typeof window !== 'undefined') 
+        data = localStorage.getItem('cart');
+    return data ? JSON.parse(data) as Product[]: [];
+}
+
+export const addproductInCartDataToLocalStorage = (product:Product) => {
+    let data: string | null = null;
+    if (typeof window !== 'undefined') 
+        data = localStorage.getItem('cart');
+    let products : Product[] = data ? JSON.parse(data) as Product[]: [];
+    products.push(product);
+    localStorage.setItem('cart', JSON.stringify(products));
+}

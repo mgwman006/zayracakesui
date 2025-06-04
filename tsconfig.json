@@ -1,6 +1,7 @@
 {
   
   "include": ["app"],
+  "exclude": ["node_modules/@types/prop-types"],
 
   "compilerOptions": {
     
@@ -11,6 +12,6 @@
     "moduleResolution": "bundler",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
+    "types": []
   }
 }
