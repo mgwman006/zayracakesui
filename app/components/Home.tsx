@@ -1,11 +1,12 @@
-import { Breadcrumb, Button, Col, Drawer, Flex, Layout, Menu, Progress, Row, theme } from 'antd';
+import { Badge, Breadcrumb, Button, Col, Drawer, Flex, Layout, Menu, Progress, Row, theme } from 'antd';
 import { Content, Footer, Header } from 'antd/es/layout/layout';
 import { useState } from 'react';
-import { Outlet } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
-import { MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { useCart } from '../contexts/CartContext';
 
 
 
@@ -22,7 +23,9 @@ const items = [
 export default function Home() {
   
 const [visible, setVisible] = useState(false);
-const screens = useBreakpoint()
+const screens = useBreakpoint();
+const {cartCount, updateCart} = useCart(); // Initialize with the number of items in cart from local storage
+
 
  
  return (
@@ -62,6 +65,10 @@ const screens = useBreakpoint()
                     </div>
                   </Col>
                   <Col span={8} style={{ textAlign: 'right', color: 'white' }}>
+                        <Badge count={cartCount} showZero style={{ color: 'white' }}>
+                          <ShoppingCartOutlined onClick={() => setVisible(true)} style={{ fontSize:25, color:'white'}} />
+                        </Badge>
+                        
                   </Col>
               </Row>
             
