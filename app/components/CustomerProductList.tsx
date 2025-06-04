@@ -1,9 +1,12 @@
-import { Avatar, Card, Flex, List, Space } from "antd";
-import { SettingOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { Avatar, Card, Flex, List, Space,Image,Typography, Grid, Button } from "antd";
+import { SettingOutlined, EditOutlined, EllipsisOutlined, ShopOutlined, CarTwoTone, ShoppingCartOutlined } from '@ant-design/icons';
 import Meta from "antd/es/card/Meta";
 import { use, useEffect, useState } from "react";
 import { getProducts } from "../services/productService";
+import { red } from "@mui/material/colors";
 
+const { Title, Paragraph } = Typography;
+const { useBreakpoint } = Grid;
 
 export default function CustomerProductList() {
 
@@ -29,16 +32,21 @@ export default function CustomerProductList() {
         fetchProducts();
     }, []);
 
+    const screens = useBreakpoint();
+
+  // Decide title size based on screen
+  const titleLevel = screens.xs ? 5 : screens.sm ? 4 : 3;
 
   return (
 
         <List
+            style={{ paddingTop: 50, paddingLeft: 50, paddingRight: 50 }}
         
         grid={{
-        gutter: 10,
+        gutter: 16,
         xs: 1,
-        sm: 1,
-        md: 1,
+        sm: 2,
+        md: 2,
         lg: 4,
         xl: 4,
         xxl: 4,
@@ -47,28 +55,49 @@ export default function CustomerProductList() {
     renderItem={(item) => (
       <List.Item
         key={item.id}
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding:20 } }
+        style={{ 
+            border: '1px solid black',
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',}}
+      
       >
         <Card
-            style={{ width: 250}}
+            style={{ width: '100%', height: '100%' }}
+        
             cover={
-            <img
-                alt="example"
-                src={item.imagePath || "https://via.placeholder.com/150" }
-                style={{ width: '100%', height: 200, objectFit: 'cover'}}
-
-            />
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                     <Image
+                        alt="example"
+                        src={item.imagePath || "https://via.placeholder.com/150" }
+                        width='100%'
+                        height={250}
+                        style={{ objectFit: 'cover', }}                
+                    />
+                </div>
+           
             }
             actions={[
-            <SettingOutlined key="setting" />,
-            <EditOutlined key="edit" />,
-            <EllipsisOutlined key="ellipsis" />,
+
+           
+            <Button color="green" icon={<ShoppingCartOutlined />}  variant="outlined" size="large" >
+                Add to Cart
+            </Button>,
+             <Button color="blue" icon={<ShopOutlined />}  variant="outlined" size="large" >
+                Buy Now
+            </Button>,
             ]}
         >
-            <Meta
-            title={item.name}
-            description={`Price: ${item.price} TZS`}
-            />
+            <div onClick={() => alert(`Clicked on product: ${item.name}`)} style={{ cursor: 'pointer' }}>
+                <Meta
+                    style={{ textAlign: 'center' }}
+                    title={<h3 style={{fontSize: '20px'}}>{item.name}</h3>}
+                    description={<p style={{fontSize:'20px', color:'black' }}>Price: {item.price} TZS</p>}
+                />
+            </div>
+            
+         
+            
         </Card>
       </List.Item>
     )}

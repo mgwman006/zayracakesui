@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { deleteProduct, getProducts, updateProductMetaData } from "../services/productService";
-import { Button, Card, Col, DatePicker, Drawer, Flex, Form, Input, List, message, Popconfirm, PopconfirmProps, Row, Select, Space } from "antd";
+import {Image, Button, Card, Col, DatePicker, Drawer, Flex, Form, Input, List, message, Popconfirm, PopconfirmProps, Row, Select, Space } from "antd";
 import { SettingOutlined, EditOutlined, EllipsisOutlined, DeleteColumnOutlined, DeleteOutlined } from "@ant-design/icons";
 import Meta from "antd/es/card/Meta";
 import { data } from "react-router";
@@ -117,10 +117,10 @@ export default function AdminProductList()
         <List
         
         grid={{
-        gutter: 10,
+        gutter: 16,
         xs: 1,
-        sm: 1,
-        md: 1,
+        sm: 2,
+        md: 2,
         lg: 4,
         xl: 4,
         xxl: 4,
@@ -129,16 +129,23 @@ export default function AdminProductList()
     renderItem={(item) => (
       <List.Item
         key={item.id}
-        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding:20 } }
+        style={{ 
+            border: '1px solid black',
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',}}
       >
         <Card
             
-            style={{ width: 250}}
+            style={{ width: '100%', height: '100%' }}
             cover={
-            <img
+            <Image
                 alt="example"
                 src={item.imagePath || "https://via.placeholder.com/150" }
-                style={{ width: '100%', height: 200, objectFit: 'cover'}}
+               
+                width='100%'
+                height={250}
+                style={{ objectFit: 'cover', }}   
 
             />
             }
@@ -158,8 +165,9 @@ export default function AdminProductList()
             ]}
         >
             <Meta
-            title={item.name}
-            description={`Price: ${item.price} TZS`}
+                style={{ textAlign: 'center' }}
+                title={<h3 style={{fontSize: '20px'}}>{item.name}</h3>}
+                description={<p style={{fontSize:'20px', color:'black' }}>Price: {item.price} TZS</p>}
             />
         </Card>
       </List.Item>
