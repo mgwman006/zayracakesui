@@ -4,13 +4,14 @@ import Meta from "antd/es/card/Meta";
 import { use, useEffect, useState } from "react";
 import { getProducts } from "../services/productService";
 import { useCart } from "../contexts/CartContext";
+import { OrderItemDto, Product } from "../models/products";
 
 
 export default function CustomerProductList() {
 
 
     const [products, setProducts] = useState<Product[]>([]);
-    const {cartCount, updateCart} = useCart(); // Initialize with the number of items in cart from local storage
+    const {cartCount,addOrderItem, updateCart, removeOrderItem, clearCart } = useCart(); // Initialize with the number of items in cart from local storage
 
     useEffect(() => {
         // Fetch products or any initial data here if needed
@@ -33,10 +34,16 @@ export default function CustomerProductList() {
     }, []);
 
 
-  // Decide title size based on screen
-
-    const addProductToCart = (item: Product) => {
-             updateCart(item); // Update the cart context
+    // Function to add a product to the cart
+     // Function to add a product to the cart
+    const addProductToCart = (product: Product) => {
+             const orderItem: OrderItemDto = {
+                productId: product.id,
+                quantity: 1, 
+                product: product, 
+                totalPrice: product.price,
+             };
+            addOrderItem(orderItem); 
     }
 
   return (
@@ -82,7 +89,7 @@ export default function CustomerProductList() {
             actions={[
 
            
-            <Button type="primary" onClick={() => addProductToCart(item)} color="green" icon={<ShoppingCartOutlined />}  variant="outlined" size="large" >
+            <Button type="primary" onClick={() => addProductToCart(item)} color="green"   variant="outlined" size="large" >
                 Add to Cart
             </Button>,
              <Button color="blue" onClick={() => addProductToCart(item)} variant="outlined" size="large" >
