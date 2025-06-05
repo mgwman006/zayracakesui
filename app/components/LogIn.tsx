@@ -1,8 +1,7 @@
 
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { UserStatus, type LogInDetails } from '../models/user';
 import { logInUser } from '../services/userServices';
-import { saveToLocalStorage } from '../utilities/localStorage';
 import { Button, Checkbox, Flex, Form, Input, Space, type FormInstance } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -30,7 +29,6 @@ export default function LogIn() {
       if(response.status===200 && data.userStatus == UserStatus.LogInSuccess)
       {
           const id:number = data.userDetails.id;
-          saveToLocalStorage("isUserLoggedIn","true");
           navigate(`/landlord/${id}`);
       }
           

@@ -4,6 +4,7 @@ import AddProduct from "./components/AddProduct";
 import Admin from "./components/Admin";
 import CustomerProductList from "./components/CustomerProductList";
 import HomePage from "./components/HomePage";
+import CheckOutPage from "./components/CheckOutPage";
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
       {
         path: "", // This will render the component at the root path
         Component: CustomerProductList
+      },
+      {
+        path: "checkout",
+        Component: CheckOutPage 
       }
     ]
   },

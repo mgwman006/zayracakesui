@@ -20,3 +20,9 @@ interface ProductMetaDataDto {
     price: number;
     imagePath: string;
 }
+
+
+
+
+
+export type { Product, ProductDto, ProductMetaDataDto };
