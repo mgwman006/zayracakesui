@@ -1,6 +1,6 @@
 import { Button, Form, Upload, UploadProps } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
-import { addProducts } from "../services/productService";
+import { addProducts } from "../../services/productService";
 import { useState } from "react";
 
 

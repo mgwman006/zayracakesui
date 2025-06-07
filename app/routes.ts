@@ -1,10 +1,13 @@
-import Home from "./components/Home";
-import LogIn from "./components/LogIn";
-import AddProduct from "./components/AddProduct";
-import Admin from "./components/Admin";
-import CustomerProductList from "./components/CustomerProductList";
-import HomePage from "./components/HomePage";
-import CheckOutPage from "./components/CheckOutPage";
+import Home from "./components/common/Home";
+import LogIn from "./components/common/LogIn";
+import AddProduct from "./components/admin/AddProduct";
+import Admin from "./components/admin/Admin";
+import CustomerProductList from "./components/customer/CustomerProductList";
+import HomePage from "./components/common/HomePage";
+import CheckOutPage from "./components/customer/CheckOutPage";
+import { Component } from "react";
+import ResetPassWordPage from "./components/common/ResetPassWordPage";
+import CustomerRegisterPage from "./components/customer/CustomerRegisterPage";
 
 const routes = [
   {
@@ -29,7 +32,15 @@ const routes = [
     path: "login",
     Component: LogIn,
   },
-
+  {
+    path: "resetpassword",
+    Component: ResetPassWordPage
+  },
+  {
+    path: "registercustomer",
+    Component: CustomerRegisterPage
+  }
+,
   {
     path:"addproduct",
     Component: AddProduct

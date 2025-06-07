@@ -6,21 +6,22 @@ import { Link } from "react-router-dom";
 
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 import { LikeOutlined, MenuOutlined, MessageOutlined, ShoppingCartOutlined, StarOutlined } from '@ant-design/icons';
-import { useCart } from '../contexts/CartContext';
-import { OrderItemDto, Product } from '../models/products';
+import { useCart } from '../../contexts/CartContext';
+import { OrderItemDto} from '../../models/orders';
 import Meta from 'antd/es/card/Meta';
-import { n } from 'react-router/dist/development/lib-C1JSsICm.mjs';
+import { useUserContext } from "../../contexts/UserContext";
+import { UserStatus } from '../../models/user';
 
 
 
 const items = [
   {
     key: '1',
-    label: <Link to="homepage">Home</Link>,
+    label: <Link to="homepage" color='white' >Home</Link>,
   },
   {
     key: '2',
-    label: <Link to="/">Product List</Link>,
+    label: <Link to="/" >Product List</Link>,
   }
 ];
 
@@ -28,6 +29,8 @@ const items = [
 
  
 export default function Home() {
+
+const { userStatus} = useUserContext(); // Get user status and login state from context
   
 const navigate = useNavigate();
 const [visible, setVisible] = useState(false);
@@ -48,6 +51,16 @@ const showCartDrawer = () => {
 
 
  
+
+  const handleNavigateToCheckOutPage = () => {
+    // check if user is logged in, if not redirect to login page
+    if (userStatus === UserStatus.LoggedIn) {
+      navigate('/checkout');
+
+    } else {
+      navigate('/login'); 
+    }
+  }
 
  return (
       <Layout>
@@ -75,8 +88,9 @@ const showCartDrawer = () => {
                     placement="left"
                     onClose={() => setVisible(false)}
                     open={visible}
+                    size='large'
                     >
-                      <Menu mode="vertical" items={items} onClick={() => setVisible(false)} />
+                      <Menu  theme="dark" mode="vertical" items={items} onClick={() => setVisible(false)} />
                     </Drawer>
                   </Col>
 
@@ -149,7 +163,7 @@ const showCartDrawer = () => {
                       // Handle checkout logic here
                       // You can redirect to a checkout page or perform any other action
                       onCloseCartDrawer(); // Close the drawer after checkout
-                      navigate('/checkout'); // Navigate to the checkout page
+                      handleNavigateToCheckOutPage(); // Navigate to the checkout page
                     }}
                   >
                     Checkout

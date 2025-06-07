@@ -1,8 +1,10 @@
  export interface User {
+    id: number;
+    userType: string; 
     firstName : string;
     lastName : string;
     email : string;
-    passWord: string;
+    phoneNumber : string;
 };
 
 export interface LogInDetails {
@@ -12,10 +14,11 @@ export interface LogInDetails {
 
 
 export enum UserStatus {
-    LogInSuccess = "LogInSuccess",
+    LoggedIn,
+    LoggedOut,
 }
 
-export interface LandLord
+export interface CreateCustomerDto
 {
     firstName : string;
     lastName : string;

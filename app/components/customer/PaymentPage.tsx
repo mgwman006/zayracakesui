@@ -1,6 +1,6 @@
 import { Button, Col, Flex, Row, Tabs, TabsProps, Image, Space } from "antd";
-import { OrderRequestDto } from "../models/orders"; // Adjust the import path as necessary
-import { useCart } from "../contexts/CartContext";
+import { OrderRequestDto } from "../../models/orders"; // Adjust the import path as necessary
+import { useCart } from "../../contexts/CartContext";
 
 
 

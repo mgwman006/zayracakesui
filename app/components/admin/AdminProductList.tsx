@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { deleteProduct, getProducts, updateProductMetaData } from "../services/productService";
+import { deleteProduct, getProducts, updateProductMetaData } from "../../services/productService";
 import {Image, Button, Card, Col, DatePicker, Drawer, Flex, Form, Input, List, message, Popconfirm, PopconfirmProps, Row, Select, Space } from "antd";
 import { SettingOutlined, EditOutlined, EllipsisOutlined, DeleteColumnOutlined, DeleteOutlined } from "@ant-design/icons";
 import Meta from "antd/es/card/Meta";
+import { Product, ProductMetaDataDto } from "../../models/products";
 
 export default function AdminProductList()
 {
