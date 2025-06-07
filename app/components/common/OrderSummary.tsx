@@ -1,5 +1,5 @@
 import { List } from "antd";
-import { OrderItemDto } from "../models/products";
+import { OrderItemDto } from "../../models/orders";
 
 export default function OrderSummary() {
     const orderItems: OrderItemDto[] = JSON.parse(localStorage.getItem('cartData') || '[]');

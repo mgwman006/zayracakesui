@@ -1,8 +1,8 @@
 import { Button, message, Steps, theme } from "antd";
-import { useCart } from "../contexts/CartContext";
+import { useCart } from "../../contexts/CartContext";
 import { useState } from "react";
-import OrderSummary from "./OrderSummary";
-import ShippingMethods from "./ShippingMethods";
+import OrderSummary from "../common/OrderSummary";
+import ShippingMethods from "../common/ShippingMethods";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import PaymentPage from "./PaymentPage";
 

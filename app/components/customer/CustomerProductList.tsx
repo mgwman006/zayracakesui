@@ -1,0 +1,103 @@
+import { Avatar, Card, Flex, List, Space,Image,Typography, Grid, Button } from "antd";
+import { SettingOutlined, EditOutlined, EllipsisOutlined, ShopOutlined, CarTwoTone, ShoppingCartOutlined, StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
+import Meta from "antd/es/card/Meta";
+import { use, useEffect, useState } from "react";
+import { getProducts } from "../../services/productService";
+import { useCart } from "../../contexts/CartContext";
+import { Product } from "../../models/products";
+import { OrderItemDto } from "../../models/orders";
+
+
+export default function CustomerProductList() {
+
+
+    const [products, setProducts] = useState<Product[]>([]);
+    const {cartCount,addOrderItem, updateCart, removeOrderItem, clearCart } = useCart(); // Initialize with the number of items in cart from local storage
+
+    useEffect(() => {
+        // Fetch products or any initial data here if needed
+        const fetchProducts = async () => {
+            try {
+                const response = await getProducts(); 
+                if (response.status === 200) {
+                    const data = response.data as Product[]; // Assuming the API returns an array of products
+                    console.log("Products fetched successfully:", data);
+                    setProducts(data); // Assuming the API returns an array of products
+                } else {
+                    console.error("Failed to fetch products:", response.statusText);
+                }
+            }
+            catch (error) {
+                console.error("Error fetching products:", error);
+            }
+        };
+        fetchProducts();
+    }, []);
+
+
+    // Function to add a product to the cart
+     // Function to add a product to the cart
+    const addProductToCart = (product: Product) => {
+             const orderItem: OrderItemDto = {
+                productId: product.id,
+                quantity: 1, 
+                product: product, 
+                totalPrice: product.price,
+             };
+            addOrderItem(orderItem); 
+    }
+
+  return (
+   
+    <List
+        size="small"
+        grid={{
+        gutter: 16,
+        xs: 1,
+        sm: 2,
+        md: 2,
+        lg: 4,
+        xl: 4,
+        xxl: 4,
+        }}
+        dataSource={products}
+        renderItem={(item) => (
+        <List.Item
+            key={item.id}
+            
+        >
+        
+            <Card
+                hoverable
+                cover={
+                    <Image
+                    alt="example"
+                    src={item.imagePath || "https://via.placeholder.com/150" }
+                    />
+                }
+
+                actions={[
+                    <Button type="primary" onClick={() => addProductToCart(item)} color="green"   variant="solid" size="large" >
+                        Add to Cart
+                    </Button>,
+                    <Button color="blue" onClick={() => addProductToCart(item)} variant="solid" size="large" >
+                        Buy Now
+                    </Button>,
+                ]}
+            >
+                <Meta
+                    title={item.name}
+                    description={`Price: ${item.price} TZS`}
+                />
+                
+            </Card>
+        </List.Item>
+        )}
+    />
+
+  
+
+    
+  );
+}
+
