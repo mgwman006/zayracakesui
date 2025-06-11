@@ -1,6 +1,8 @@
 import { Button, Col, Result, Row, Tabs, TabsProps } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import ShippingAddress from "./ShippingAddress";
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+
 
 const items: TabsProps['items'] = [
   {
@@ -22,11 +24,22 @@ const items: TabsProps['items'] = [
 ];
 
 export default function ShippingMethods() {
-    return (
-        <Row style={{ textAlign: 'center', backgroundColor: 'white', padding: '20px', borderRadius: '8px', margin: '20px 20px' }}>
-            <Col span={24}>
-                <Tabs defaultActiveKey="1" items={items}  />
-            </Col>
-        </Row>
-    );
+        return (
+          <>
+            {isMobile && (
+              <Row justify='center' style={{ alignContent:'center', textAlign: 'center', backgroundColor: 'white', padding: '20px', borderRadius: '8px', margin: '20px 20px' }}>
+                  <Col span={24}>
+                      <Tabs size="large" defaultActiveKey="1" items={items}  />
+                  </Col>
+              </Row>
+            )}
+            {isBrowser && (
+              <Row style={{ textAlign: 'center', backgroundColor: 'white', padding: '20px', borderRadius: '8px', margin: '20px 20px' }}>
+                  <Col span={24}>
+                      <Tabs defaultActiveKey="1" items={items}  />
+                  </Col>
+              </Row>
+            )}
+          </>
+        );
     }

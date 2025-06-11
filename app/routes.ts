@@ -8,6 +8,8 @@ import CheckOutPage from "./components/customer/CheckOutPage";
 import { Component } from "react";
 import ResetPassWordPage from "./components/common/ResetPassWordPage";
 import CustomerRegisterPage from "./components/customer/CustomerRegisterPage";
+import ProductPreview from "./components/customer/ProductPreview";
+import CheckOutSingleItem from "./components/customer/CheckOutSingleItem";
 
 const routes = [
   {
@@ -25,6 +27,14 @@ const routes = [
       {
         path: "checkout",
         Component: CheckOutPage 
+      },
+      {
+        path:"productpreview",
+        Component: ProductPreview
+      },
+      {
+        path:"checkoutsingleitem",
+        Component: CheckOutSingleItem
       }
     ]
   },

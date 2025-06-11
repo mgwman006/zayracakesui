@@ -6,11 +6,12 @@ import { getProducts } from "../../services/productService";
 import { useCart } from "../../contexts/CartContext";
 import { Product } from "../../models/products";
 import { OrderItemDto } from "../../models/orders";
+import { useNavigate } from "react-router-dom";
 
 
 export default function CustomerProductList() {
 
-
+    const navigate = useNavigate();
     const [products, setProducts] = useState<Product[]>([]);
     const {cartCount,addOrderItem, updateCart, removeOrderItem, clearCart } = useCart(); // Initialize with the number of items in cart from local storage
 
@@ -47,6 +48,10 @@ export default function CustomerProductList() {
             addOrderItem(orderItem); 
     }
 
+    const handleBuyNow = (product: Product) => {
+        navigate("/productpreview",{state:product});
+    }
+
   return (
    
     <List
@@ -80,7 +85,7 @@ export default function CustomerProductList() {
                     <Button type="primary" onClick={() => addProductToCart(item)} color="green"   variant="solid" size="large" >
                         Add to Cart
                     </Button>,
-                    <Button color="blue" onClick={() => addProductToCart(item)} variant="solid" size="large" >
+                    <Button color="blue" onClick={() => handleBuyNow(item)} variant="solid" size="large" >
                         Buy Now
                     </Button>,
                 ]}

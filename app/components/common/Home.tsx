@@ -11,6 +11,8 @@ import { OrderItemDto} from '../../models/orders';
 import Meta from 'antd/es/card/Meta';
 import { useUserContext } from "../../contexts/UserContext";
 import { UserStatus } from '../../models/user';
+import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+
 
 
 
@@ -64,7 +66,9 @@ const showCartDrawer = () => {
 
  return (
       <Layout>
-      <Header
+      {isMobile ? 
+        (
+          <Header
         style={{
           position: 'sticky',
           top: 0,
@@ -225,6 +229,136 @@ const showCartDrawer = () => {
   />
       </Drawer>        
       </Header>
+        ):
+        (
+            <Header
+                style={{
+                  position: 'sticky',
+                  top: 0,
+                  zIndex: 1,
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                
+                  <div className="demo-logo" style={{ color: 'white', fontSize: '24px', fontWeight: 'bold', marginRight: '16px' }}>
+                  Zayra Cakes
+                  </div>
+                    <Menu
+                  theme="dark"
+                  mode="horizontal"
+                  defaultSelectedKeys={['1']}
+                  items={items}
+                  style={{ flex: 1, minWidth: 0 }}
+                />
+              
+                  
+              
+              <Drawer
+                size='large'
+                placement="right"
+                title="Shopping Cart"
+                onClose={onCloseCartDrawer}
+                open={openCartDrawler}
+                footer={
+                      <Row>
+                        <Col span={6}>
+                          <Statistic title="Total Items" value={cartCount} />
+                        </Col>
+                        <Col span={6}>
+                          <Statistic title="Total Price (CNY)" value={orderItems.reduce((total, item) => total + item.totalPrice, 0)} precision={2} />
+                        </Col>
+
+                        <Col span={6} style={{ textAlign: 'center', marginTop: '16px' }}>
+                          <Button 
+                            type="primary" 
+                            danger 
+                            onClick={() => {
+                              clearCart(); // Clear the cart in context
+                              setOderItems([]); // Clear the order items state
+                              onCloseCartDrawer(); // Close the drawer
+                            }}
+                          >
+                            Clear Cart
+                          </Button>
+                        </Col>
+
+                        <Col span={6} style={{ textAlign: 'center', marginTop: '16px' }}>
+                          <Button 
+                            type="primary" 
+                            onClick={() => {
+                              // Handle checkout logic here
+                              // You can redirect to a checkout page or perform any other action
+                              onCloseCartDrawer(); // Close the drawer after checkout
+                              handleNavigateToCheckOutPage(); // Navigate to the checkout page
+                            }}
+                          >
+                            Checkout
+                          </Button>
+                        </Col>
+                      </Row>
+                      }
+              >
+                <List
+                  itemLayout="vertical"
+                  size="large"
+                  dataSource={orderItems}
+                  renderItem={(item, index) => (
+                    <List.Item
+                      key={item.productId}
+                      
+                      extra={
+                        <Image
+                          width='200px'
+                          height='200px'
+                          style={{ objectFit: 'cover' }}
+                          alt="logo"
+                          src={item.product.imagePath ? item.product.imagePath : 'https://via.placeholder.com/150'}
+                        />
+                        
+                      }
+
+                    >
+                    <List.Item.Meta
+                      title={<a >{item.product.name}</a>}
+                    />
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Meta
+                      description='Quantity'
+                    />
+                    <InputNumber
+                      min={1}
+                      max={500}
+                      defaultValue={item.quantity}
+                      onChange={(e) => {
+                        if (e !== null) {
+                          const updatedOrderItems = [...orderItems];
+                          updatedOrderItems[index].quantity = e;
+                          updatedOrderItems[index].totalPrice = e * item.product.price;
+                          setOderItems(updatedOrderItems);
+                          updateCart(updatedOrderItems); // Update the cart in context
+                        }
+                      }}
+                    />
+                  </Col>
+                  <Col span={12}>
+                    <Statistic title="Account Balance (CNY)" value={item.totalPrice} precision={2} />
+                  </Col>
+                </Row>
+                
+              </List.Item>
+            )}
+          />
+              </Drawer>        
+            </Header>
+        )
+      }
+      
+
+
+
       <Content style={{ padding: '0 48px' }}>
         <div>
           <Outlet />
