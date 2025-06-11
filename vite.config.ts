@@ -11,7 +11,7 @@ export default defineConfig({
   },
   server: {
     port: 8080,
-    open: false, // set to true to open the browser automatically
+    open: true, // set to true to open the browser automatically
     strictPort: true, // fail if the port is already in use
     allowedHosts: true
 
