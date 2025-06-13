@@ -53,11 +53,11 @@ export default function CustomerProductList() {
     }
 
   return (
-   
-    <List
-        size="small"
+   <Flex style={{margin:'20px'}}>
+        <List
+        style={{}}
         grid={{
-        gutter: 16,
+        gutter: 10,
         xs: 1,
         sm: 2,
         md: 2,
@@ -76,16 +76,19 @@ export default function CustomerProductList() {
                 hoverable
                 cover={
                     <Image
-                    alt="example"
-                    src={item.imagePath || "https://via.placeholder.com/150" }
+                        alt="example"
+                        src={item.imagePath || "https://via.placeholder.com/150" }
+                        width='100%'
+                          style={{ objectFit: "cover", aspectRatio: 1 / 1 }} // add an aspect ratio
+
                     />
                 }
 
                 actions={[
-                    <Button type="primary" onClick={() => addProductToCart(item)} color="green"   variant="solid" size="large" >
+                    <Button type="primary" onClick={() => addProductToCart(item)} color="green"   variant="solid" size="small" >
                         Add to Cart
                     </Button>,
-                    <Button color="blue" onClick={() => handleBuyNow(item)} variant="solid" size="large" >
+                    <Button color="blue" onClick={() => handleBuyNow(item)} variant="solid" size="small" >
                         Buy Now
                     </Button>,
                 ]}
@@ -95,10 +98,13 @@ export default function CustomerProductList() {
                     description={`Price: ${item.price} TZS`}
                 />
                 
+                
             </Card>
         </List.Item>
         )}
-    />
+        />
+   </Flex>
+    
 
   
 
