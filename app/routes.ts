@@ -17,11 +17,11 @@ const routes = [
     Component: Home,
     children: [
       {
-        path:"homepage",
+        path:"",
         Component: HomePage
       },
       {
-        path: "", // This will render the component at the root path
+        path: "products", // This will render the component at the root path
         Component: CustomerProductList
       },
       {
