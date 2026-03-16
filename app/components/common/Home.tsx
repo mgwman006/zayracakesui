@@ -229,22 +229,28 @@ const showCartDrawer = () => {
                     {/* <div className="demo-logo" style={{ color: 'white', fontSize: '24px', fontWeight: 'bold', marginRight: '16px' }}>
                       ZayraCakes
                     </div> */}
-                    <div className="demo-logo">
+                    {/* <div className="demo-logo">
                       <Image style={{width:"20%"}} preview={false}  src="/zayralogo2.png"/>
+                    </div> */}
+                    <div className="demo-logo" style={{ marginRight: 16 }}>
+                      <Image
+                        preview={false}
+                        src="/zayralogo2.png"
+                        style={{ height: 40, width: "auto", objectFit: "contain" }}
+                    />
                     </div>
-                      <Menu
-                        theme="dark"
-                        mode="horizontal"
-                        defaultSelectedKeys={['2']}
-                        items={items}
-                        style={{ flex: 1, minWidth: 0, justifyContent:'center' }}
-                      />
 
+                    <Menu
+                      theme="dark"
+                      mode="horizontal"
+                      defaultSelectedKeys={['2']}
+                      items={items}
+                      style={{ flex: 1, minWidth: 0, justifyContent:'center' }}
+                    />
 
                     <Badge count={cartCount} showZero style={{ color: 'white' }} onClick={showCartDrawer} >
                       <ShoppingCartOutlined onClick={showCartDrawer} style={{ fontSize:25, color:'white'}} />
                     </Badge>
-                 
               
                     <Drawer
                       size='large'
@@ -344,7 +350,6 @@ const showCartDrawer = () => {
                 />
                     </Drawer> 
                 
-                              
             </Header>
         )
       }
