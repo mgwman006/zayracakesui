@@ -20,15 +20,16 @@ const items = [
   {
     key: '1',
     label: <Link to="" ><b>Home</b></Link>,
-  },
-  {
-    key: '2',
-    label: <Link to="/" color='white'><b>Product List</b></Link>,
-  },
-  {
-    key: '3',
-    label: <Link to="" color='white'><b>Find A Store</b></Link>,
   }
+  // ,
+  // {
+  //   key: '2',
+  //   label: <Link to="/" color='white'><b>Product List</b></Link>,
+  // },
+  // {
+  //   key: '3',
+  //   label: <Link to="" color='white'><b>Find A Store</b></Link>,
+  // }
 ];
 
 
@@ -102,6 +103,9 @@ const showCartDrawer = () => {
                 <div style={{ fontSize:'25PX', width:'100%',textAlign:'center', color:'white'}}>
                   ZayraCakes
                 </div>
+                {/* <div className="demo-logo" style={{ fontSize:'25PX', width:'100%',textAlign:'center', color:'white'}}>
+                      <Image style={{width:"30%"}} preview={false}  src="/zayralogo2.png"/>
+                    </div> */}
                 <div style={{ }}>
                     <Badge count={cartCount} showZero style={{ color: 'white'}} onClick={showCartDrawer} >
                       <ShoppingCartOutlined onClick={showCartDrawer} style={{fontSize:25, color:'white'}} />
@@ -222,10 +226,21 @@ const showCartDrawer = () => {
                   alignItems: 'center',
                 }}
               >
-                    <div className="demo-logo" style={{ color: 'white', fontSize: '24px', fontWeight: 'bold', marginRight: '16px' }}>
+                    {/* <div className="demo-logo" style={{ color: 'white', fontSize: '24px', fontWeight: 'bold', marginRight: '16px' }}>
                       ZayraCakes
+                    </div> */}
+                    {/* <div className="demo-logo">
+                      <Image style={{width:"20%"}} preview={false}  src="/zayralogo2.png"/>
+                    </div> */}
+                    <div className="demo-logo" style={{ marginRight: 16 }}>
+                      <Image
+                        preview={false}
+                        src="/zayralogo2.png"
+                        style={{ height: 40, width: "auto", objectFit: "contain" }}
+                    />
                     </div>
-                      <Menu
+
+                    <Menu
                       theme="dark"
                       mode="horizontal"
                       defaultSelectedKeys={['2']}
@@ -233,11 +248,9 @@ const showCartDrawer = () => {
                       style={{ flex: 1, minWidth: 0, justifyContent:'center' }}
                     />
 
-
                     <Badge count={cartCount} showZero style={{ color: 'white' }} onClick={showCartDrawer} >
                       <ShoppingCartOutlined onClick={showCartDrawer} style={{ fontSize:25, color:'white'}} />
                     </Badge>
-                 
               
                     <Drawer
                       size='large'
@@ -337,7 +350,6 @@ const showCartDrawer = () => {
                 />
                     </Drawer> 
                 
-                              
             </Header>
         )
       }
